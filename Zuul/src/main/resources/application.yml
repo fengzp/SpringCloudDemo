@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: zuul
+
+server:
+  port: 8020
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8010/eureka/
+
+zuul:
+  routes:
+    api-a:
+      path: /service-a/**
+      serviceId: service-a
+    api-b:
+      path: /service-b/**
+      serviceId: service-b
+  sensitive-headers:  #设置忽略的头信息，设置为空能解决会话保持问题
+  add-host-header: true #设为true才能保持Host头信息处理正确
